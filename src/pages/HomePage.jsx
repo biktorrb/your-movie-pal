@@ -4,6 +4,10 @@ import {
     fetchTopRatedMovies,
     fetchUpcomingMovies, 
 } from '@/services/movieService';
+import MovieCarousel from '@/components/MovieCarousel';
+import { BsFire, BsStarFill, BsFillCalendar2DateFill } from "react-icons/bs";
+
+
 
 function HomePage() {
     const {
@@ -30,44 +34,54 @@ function HomePage() {
         queryKey: ['upcomingMovies'],
         queryFn: fetchUpcomingMovies,
     });
+
+    // Manejo básico de error global (opcional)
+    if (popularMoviesError || topRatedMoviesError || upcomingMoviesError) {
+        return <div className="text-red-500 text-center mt-10">Hubo un error cargando las películas.</div>;
+    }
     
     return (
-        <div className='container mx-auto p-4'>
-            {/* --- Sección Populares --- */}
-            <section className="mb-10">
-                <h2 className="text-2xl font-semibold mb-4 text-white">Populares</h2>
-                {isPopularMoviesLoading && <div className="text-white">Cargando...</div>}
-                {popularMoviesError && <div className="text-red-500">Error al cargar películas populares.</div>}
-                {popularMoviesData && (
-                <pre className="text-green-400 bg-gray-800 p-2 rounded">
-                    {JSON.stringify(popularMoviesData.results.slice(0, 3), null, 2)}
-                </pre>
-                )}
-            </section>
+        <div className='bg-gray-950 min-h-screen pb-10'>
+            {/* Opcional: Aquí podrías poner un componente <Hero /> más adelante */}
+            <div className="container mx-auto py-8">
+                
+                {/* 1. Populares */}
+                <MovieCarousel 
+                    title={
+                        <>
+                            <span className='text-orange-400'><BsFire /></span>
+                            <span>Populares</span>
+                        </>
+                    } 
+                    movies={popularMoviesData?.results} 
+                    isLoading={isPopularMoviesLoading} 
+                />
 
-            {/* --- Sección Mejor Valoradas --- */}
-            <section className="mb-10">
-                <h2 className="text-2xl font-semibold mb-4 text-white">Mejor Valoradas</h2>
-                {isTopRatedMoviesLoading && <div className="text-white">Cargando...</div>}
-                {topRatedMoviesError && <div className="text-red-500">Error al cargar películas mejor valoradas.</div>}
-                {topRatedMoviesData && (
-                <pre className="text-green-400 bg-gray-800 p-2 rounded">
-                    {JSON.stringify(topRatedMoviesData.results.slice(0, 3), null, 2)}
-                </pre>
-                )}
-            </section>
+                {/* 2. Mejor Valoradas */}
+                <MovieCarousel 
+                    title={
+                        <>
+                            <span className='text-amber-300'><BsStarFill /></span>
+                            <span>Mejor Valoradas</span>
+                        </>
+                    } 
+                    movies={topRatedMoviesData?.results} 
+                    isLoading={isTopRatedMoviesLoading} 
+                />
 
-            {/* --- Sección Próximamente --- */}
-            <section>
-                <h2 className="text-2xl font-semibold mb-4 text-white">Próximamente</h2>
-                {isUpcomingMoviesLoading && <div className="text-white">Cargando...</div>}
-                {upcomingMoviesError && <div className="text-red-500">Error al cargar próximos estrenos.</div>}
-                {upcomingMoviesData && (
-                <pre className="text-green-400 bg-gray-800 p-2 rounded">
-                    {JSON.stringify(upcomingMoviesData.results.slice(0, 3), null, 2)}
-                </pre>
-                )}
-            </section>
+                {/* 3. Próximamente */}
+                <MovieCarousel 
+                    title={
+                        <>
+                            <span className='text-stone-50'><BsFillCalendar2DateFill /></span>
+                            <span>Próximos Estrenos</span>
+                        </>
+                    } 
+                    movies={upcomingMoviesData?.results} 
+                    isLoading={isUpcomingMoviesLoading} 
+                />
+                
+            </div>
         </div>
     );
 }

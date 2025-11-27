@@ -1,8 +1,8 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  --swiper-navigation-color: #ffffff; /* Flechas blancas */
+  --swiper-navigation-size: 25px;     /* Tamaño más sutil */
 }
 
 .logo {
@@ -39,4 +39,25 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    background-color: rgba(0,0,0,0.5); /* Fondo semitransparente */
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+    backdrop-filter: blur(2px);
+    transition: all 0.3s;
+    padding: 5px;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background-color: #dc2626; /* Rojo al pasar el mouse */
+    transform: scale(1.1);
+}
+
+.swiper-button-disabled {
+    opacity: 0 !important; /* Ocultar flecha si no hay más scroll */
 }

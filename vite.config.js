@@ -3,13 +3,15 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import tailwindcss from '@tailwindcss/vite'
 
 // Esto está perfecto
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 export default defineConfig({
   plugins: [
-    react() // <-- Solo React aquí
+    react(), // <-- Solo React aquí
+    tailwindcss(),
   ],
   resolve: {
     // Esto también está perfecto
