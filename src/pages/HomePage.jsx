@@ -35,46 +35,44 @@ function HomePage() {
         queryFn: fetchUpcomingMovies,
     });
 
-    // Manejo básico de error global (opcional)
     if (popularMoviesError || topRatedMoviesError || upcomingMoviesError) {
         return <div className="text-red-500 text-center mt-10">Hubo un error cargando las películas.</div>;
     }
     
     return (
         <div className='bg-gray-950 min-h-screen pb-10'>
-            {/* Opcional: Aquí podrías poner un componente <Hero /> más adelante */}
             <div className="container mx-auto py-8">
                 
-                {/* 1. Populares */}
+                {/* Populares */}
                 <MovieCarousel 
                     title={
                         <>
                             <span className='text-orange-400'><BsFire /></span>
-                            <span>Populares</span>
+                            <span>Populars</span>
                         </>
                     } 
                     movies={popularMoviesData?.results} 
                     isLoading={isPopularMoviesLoading} 
                 />
 
-                {/* 2. Mejor Valoradas */}
+                {/* Mejor Valoradas */}
                 <MovieCarousel 
                     title={
                         <>
                             <span className='text-amber-300'><BsStarFill /></span>
-                            <span>Mejor Valoradas</span>
+                            <span>Top Rated</span>
                         </>
                     } 
                     movies={topRatedMoviesData?.results} 
                     isLoading={isTopRatedMoviesLoading} 
                 />
 
-                {/* 3. Próximamente */}
+                {/* Próximamente */}
                 <MovieCarousel 
                     title={
                         <>
                             <span className='text-stone-50'><BsFillCalendar2DateFill /></span>
-                            <span>Próximos Estrenos</span>
+                            <span>Upcoming Releases</span>
                         </>
                     } 
                     movies={upcomingMoviesData?.results} 

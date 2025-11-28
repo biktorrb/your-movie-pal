@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BsStarFill } from "react-icons/bs";
 
 
 function MovieCard({ movie }) {
@@ -34,7 +35,7 @@ function MovieCard({ movie }) {
                     className="absolute top-2 left-2 bg-yellow-500 text-black text-xs 
                                 font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-md"
                 >
-                    ⭐ {rating}
+                    <BsStarFill className="text-amber-200" /> {rating}
                 </span>
             </div>
 
