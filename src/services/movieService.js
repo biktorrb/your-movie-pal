@@ -93,7 +93,7 @@ export const fetchMoviesByGenre = async (genreId) => {
             params: {
                 include_adult: false,
                 language: 'en-US',
-                without_genres: genreId
+                with_genres: genreId
             }
         });
         return data;

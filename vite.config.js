@@ -5,16 +5,14 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 
-// Esto está perfecto
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 export default defineConfig({
   plugins: [
-    react(), // <-- Solo React aquí
+    react(),
     tailwindcss(),
   ],
   resolve: {
-    // Esto también está perfecto
     alias: { '@': path.resolve(__dirname, './src') },
   },
   server: {

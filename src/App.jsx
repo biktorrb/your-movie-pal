@@ -6,6 +6,7 @@ import SearchPage from '@/pages/SearchPage'
 import CategoriesPage from '@/pages/CategoriesPage'
 import '@/styles/App.css'
 import {Routes, Route} from 'react-router-dom'
+import CategoryMoviesPage from './pages/CategoryMoviesPage'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/movie/:id" element={<MovieDetailsPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="/category/:id" element={<CategoryMoviesPage />} />
       </Routes>
       <Footer />
     </div>

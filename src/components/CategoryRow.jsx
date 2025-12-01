@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchMoviesByGenre } from '@/services/movieService';
-import MovieCarousel from '@/components/MovieCarousel'; 
+import MovieCarousel from '@/components/MovieCarousel';
+import  Button from '@/components/ui/Button';
 
 const CategoryRow = ({ genreId, genreName }) => {
     
@@ -18,6 +19,13 @@ const CategoryRow = ({ genreId, genreName }) => {
                 {genreName}
             </h3>
             <MovieCarousel movies={data.results} />
+            <Button 
+                to={`/category/${genreId}?name=${encodeURIComponent(genreName)}`}
+                variant="no_bg"
+                className="!text-slate-50"                
+            >
+                Show More...
+            </Button>
         </div>
     );
 };

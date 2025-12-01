@@ -1,8 +1,5 @@
 # netlify.toml
 
-# Esto le dice a Netlify:
-# "Cualquier petición que veas a /api/...
-# ...reenvíala secretamente a TMDb"
 
 [[redirects]]
   from = "/api/*"

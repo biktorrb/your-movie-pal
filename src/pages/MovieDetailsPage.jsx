@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from "react-router-dom";
 import { fetchMovieDetails, fetchMovieVideos, fetchMovieCredits } from '@/services/movieService';
 import { IoChevronBackOutline } from "react-icons/io5";
 import Button from '@/components/ui/Button';
@@ -7,6 +8,8 @@ import Button from '@/components/ui/Button';
 
 const MovieDetailsPage = () => {
     const { id } = useParams();
+
+    const navigate = useNavigate();
 
     const { data: movie, isLoading, error } = useQuery({
         queryKey: ['movieDetails', id],
@@ -40,7 +43,6 @@ const MovieDetailsPage = () => {
         ? creditsData.crew.filter(member => member.job === 'Director')
         : [];
 
-
     return (
         <div className="bg-gray-900 min-h-screen text-white pb-20">
             
@@ -50,12 +52,12 @@ const MovieDetailsPage = () => {
                 style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}
             >
                 <div className="absolute top-4 left-4 z-10">
-                    <Button to="/" 
-                        variant="secondary" 
-                        className="!text-slate-50"
+                    <Button
+                        onClick={() => navigate(-1)}
+                        variant="no_bg"
+                        className="!text-slate-50 !bg-gray-800/50 !hover:bg-gray-800/70"
                     >
-                        {/* Usamos un emoji o podrías usar un ícono SVG */}
-                        <IoChevronBackOutline className="inline-block mr-2" /> Back To Home
+                        <IoChevronBackOutline className="inline-block mr-2" /> Go Back
                     </Button>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent flex items-end p-8">
@@ -64,8 +66,6 @@ const MovieDetailsPage = () => {
                         <p className="text-gray-300 text-lg max-w-2xl leading-relaxed line-clamp-3">
                             {movie.overview}
                         </p>
-                        
-                        {/* Pequeña info extra (Año y Duración) */}
                         <div className="flex gap-4 mt-4 text-sm font-semibold text-gray-400">
                             <span>{movie.release_date?.split('-')[0]}</span>
                             <span>•</span>

@@ -16,7 +16,8 @@ const Button = ({
   const variants = {
     primary: "bg-red-600 text-white hover:bg-red-700 shadow-lg shadow-red-600/30",
     secondary: "bg-gray-700 text-white hover:bg-gray-600",
-    outline: "border-2 border-gray-500 text-gray-300 hover:border-white hover:text-white hover:bg-white/10"
+    outline: "border-2 border-gray-500 text-gray-300 hover:border-white hover:text-white hover:bg-white/10",
+    no_bg: "bg-transparent"
   };
 
   const finalClass = `${baseStyles} ${variants[variant]} ${className}`;
